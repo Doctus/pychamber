@@ -1,5 +1,4 @@
-PyChamber
-By Doctus (kirikayuumura.noir@gmail.com)
+PyChamber -  by Doctus (kirikayuumura.noir@gmail.com)
 
 	A minimalist, low-distraction text editor based on PyQt.
 	
@@ -13,7 +12,7 @@ By Doctus (kirikayuumura.noir@gmail.com)
 		ESCAPE - Quit
 	
 	
-REQUIREMENTS:
+REQUIREMENTS
 	
 	Python 2 or Python 3
 	PyQt4 or PyQt5
