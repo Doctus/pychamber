@@ -39,6 +39,9 @@ class MainWidget(QTextEdit):
 	def __init__(self, *args, **kwargs):
 		super(MainWidget, self).__init__(*args, **kwargs)
 		self.setStyleSheet("background-color:black; color:green;")
+		
+	def changeColors(self, bg="black", fg="green"):
+		self.setStyleSheet("background-color:%s; color:%s;" % (bg, fg))
 
 class MainWindow(QMainWindow):
 
@@ -60,11 +63,26 @@ class MainWindow(QMainWindow):
 		self.saveAsShortcut.activated.connect(self.saveFileAs)
 		self.newShortcut = QShortcut(QKeySequence("Ctrl+N"), self)
 		self.newShortcut.activated.connect(self.newFile)
+		self.colorShortcut = QShortcut(QKeySequence("Ctrl+K"), self)
+		self.colorShortcut.activated.connect(self.selectColors)
 		self.exitShortcut = QShortcut(QKeySequence(Qt.Key_Escape), self)
 		self.exitShortcut.activated.connect(sys.exit)
 		if not PYTHON_THREE:
 			self.errorDialog = QErrorMessage(self)
 			self.errorDialog.showMessage("It is recommended to run PyChamber with Python 3 if you plan to edit non-ASCII files; this version does not have Unicode support. (Your Python version is %s)" % ".".join([str(i) for i in sys.version_info[:3]]), "updatepython")
+		
+	def selectColors(self, *args, **kwargs):
+		newForeground = QColorDialog.getColor(Qt.darkGreen, self)
+		if newForeground.isValid():
+			fg = newForeground.name()
+		else:
+			fg = "green"
+		newBackground = QColorDialog.getColor(Qt.black, self)
+		if newBackground.isValid():
+			bg = newBackground.name()
+		else:
+			bg = "black"
+		self.mainWidget.changeColors(fg=fg, bg=bg)
 		
 	def newFile(self, *args, **kwargs):
 		self.mainWidget.setPlainText("")

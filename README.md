@@ -9,6 +9,7 @@ PyChamber -  by Doctus (kirikayuumura.noir@gmail.com)
 		CTRL+O - Open
 		CTRL+S - Save
 		CTRL+SHIFT+S - Save As
+		CTRL+K - Set Colors
 		ESCAPE - Quit
 	
 	
